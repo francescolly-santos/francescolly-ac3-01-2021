@@ -1,3 +1,5 @@
+package br.bandtec.com.projetofrancescolly.obj;
+
 public class PilhaObj<T> {
     private int topo;
     private T[] pilha;
