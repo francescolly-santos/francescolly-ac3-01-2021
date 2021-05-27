@@ -32,22 +32,6 @@ public class Jogador {
 
     private Boolean aposentado;
 
-    public Jogador(Integer id,
-                   @NotBlank String nome,
-                   @NotBlank String sobrenome,
-                   @NotBlank @Positive Integer numeroCamisa,
-                   @NotBlank String diaDeEstreia,
-                   PosicaoJogador posicao,
-                   Boolean aposentado
-    ) {
-        this.id = id;
-        this.nome = nome;
-        this.sobrenome = sobrenome;
-        this.numeroCamisa = numeroCamisa;
-        this.diaDeEstreia = diaDeEstreia;
-        this.posicao = posicao;
-        this.aposentado = aposentado;
-    }
 
     public Integer getId() {
         return id;

@@ -1,5 +1,6 @@
 package br.bandtec.com.projetofrancescolly.controle;
 
+import br.bandtec.com.projetofrancescolly.dominio.Jogador;
 import br.bandtec.com.projetofrancescolly.dominio.PosicaoJogador;
 import br.bandtec.com.projetofrancescolly.repositorio.PosicaoJogadorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,8 @@ public class PosicaoJogadorController {
 
     @Autowired
     private PosicaoJogadorRepository repository;
+
+    // Para a controller de posição jogador foram feitas requisições normais
 
     @GetMapping("/lista")
     public ResponseEntity getPosicao() {
@@ -36,6 +39,17 @@ public class PosicaoJogadorController {
             return ResponseEntity.status(201).body("Posição inserida com sucesso");
         } else {
             return ResponseEntity.status(400).body("Posição não inserida com sucesso");
+        }
+    }
+
+    @PutMapping("/alterar-posicao/{id}")
+    public ResponseEntity putJogador(@RequestBody @Valid PosicaoJogador posicaoJogador, @PathVariable int id) {
+        if (repository.existsById(id)) {
+            posicaoJogador.setId(id);
+            repository.save(posicaoJogador);
+            return ResponseEntity.status(200).body("Posição alterada com sucesso");
+        } else {
+            return ResponseEntity.status(404).body("Posição alterada sem sucesso");
         }
     }
 }

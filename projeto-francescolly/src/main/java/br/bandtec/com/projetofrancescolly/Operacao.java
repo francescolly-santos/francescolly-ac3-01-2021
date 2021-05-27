@@ -5,7 +5,7 @@ import br.bandtec.com.projetofrancescolly.dominio.Jogador;
 import javax.persistence.Id;
 
 
-public class Operacoes {
+public class Operacao {
 
     private String protocole;
 
@@ -14,6 +14,7 @@ public class Operacoes {
     private Jogador body;
 
     private Integer status;
+
 
     public String getProtocole() {
         return protocole;
