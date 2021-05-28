@@ -1,4 +1,4 @@
-package br.bandtec.com.projetofrancescolly;
+package br.bandtec.com.projetofrancescolly.dominio;
 
 import br.bandtec.com.projetofrancescolly.dominio.Jogador;
 

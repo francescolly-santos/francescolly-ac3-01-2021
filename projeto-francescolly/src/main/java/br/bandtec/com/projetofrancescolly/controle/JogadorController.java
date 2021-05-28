@@ -1,7 +1,7 @@
 package br.bandtec.com.projetofrancescolly.controle;
 
-import br.bandtec.com.projetofrancescolly.Operacao;
-import br.bandtec.com.projetofrancescolly.ResultadoProcessamento;
+import br.bandtec.com.projetofrancescolly.dominio.Operacao;
+import br.bandtec.com.projetofrancescolly.dominio.ResultadoProcessamento;
 import br.bandtec.com.projetofrancescolly.agendamento.AgendamentoService;
 import br.bandtec.com.projetofrancescolly.arquivo.GravaArquivo;
 //import br.bandtec.com.projetofrancescolly.arquivo.LeArquivo;

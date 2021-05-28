@@ -1,18 +1,12 @@
 package br.bandtec.com.projetofrancescolly.agendamento;
 
-import br.bandtec.com.projetofrancescolly.Operacao;
-import br.bandtec.com.projetofrancescolly.ResultadoProcessamento;
+import br.bandtec.com.projetofrancescolly.dominio.Operacao;
+import br.bandtec.com.projetofrancescolly.dominio.ResultadoProcessamento;
 import br.bandtec.com.projetofrancescolly.controle.JogadorController;
-import br.bandtec.com.projetofrancescolly.dominio.Jogador;
-import br.bandtec.com.projetofrancescolly.obj.FilaObj;
 import br.bandtec.com.projetofrancescolly.repositorio.JogadorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.UUID;
 
 @Service
 public class AgendamentoService {
@@ -24,7 +18,7 @@ public class AgendamentoService {
     private JogadorController controller;
 
     //Método agendado está verificando se a fila de requisições está vazia e caso não faz as operações
-    @Scheduled(fixedRate = 3000)
+    @Scheduled(fixedRate = 120000)
     public void verificarRequisições() {
         if (controller.operacoesFila.isEmpty()) {
             System.out.println("Fila vazia");
