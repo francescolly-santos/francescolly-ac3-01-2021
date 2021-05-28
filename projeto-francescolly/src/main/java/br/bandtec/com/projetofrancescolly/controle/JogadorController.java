@@ -3,19 +3,19 @@ package br.bandtec.com.projetofrancescolly.controle;
 import br.bandtec.com.projetofrancescolly.Operacao;
 import br.bandtec.com.projetofrancescolly.ResultadoProcessamento;
 import br.bandtec.com.projetofrancescolly.agendamento.AgendamentoService;
+import br.bandtec.com.projetofrancescolly.arquivo.GravaArquivo;
+//import br.bandtec.com.projetofrancescolly.arquivo.LeArquivo;
+import br.bandtec.com.projetofrancescolly.arquivo.LeArquivo;
 import br.bandtec.com.projetofrancescolly.dominio.Jogador;
-import br.bandtec.com.projetofrancescolly.dominio.PosicaoJogador;
 import br.bandtec.com.projetofrancescolly.obj.FilaObj;
+import br.bandtec.com.projetofrancescolly.obj.ListaObj;
 import br.bandtec.com.projetofrancescolly.obj.PilhaObj;
 import br.bandtec.com.projetofrancescolly.repositorio.JogadorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import javax.websocket.server.PathParam;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -36,11 +36,30 @@ public class JogadorController {
     public static PilhaObj<Operacao> operacoesPilha = new PilhaObj<Operacao>(10);
     public static FilaObj<Operacao> operacoesFila = new FilaObj<Operacao>(10);
     public List<ResultadoProcessamento> resultadoProcessos = new ArrayList<ResultadoProcessamento>();
+    public ListaObj<Jogador> listaJogadores = new ListaObj(11);
+
 
     // Endpoints para operações normais com o banco
+
+    //Endpoint get que além de retornar no body a lista, também cria um arquivo .txt
+    //que serve como um meio de verificar quais jogadores estavam registrados no banco em determinado momento
     @GetMapping("/listar-jogadores")
     public ResponseEntity<List<Jogador>> getJogadores() {
         List<Jogador> lista = repository.findAll();
+
+
+        //Apaga a lista toda vez que for chamado o endpoint
+        for(int i = 0; i < lista.size(); i++){
+            listaJogadores.removePeloIndice(i);
+        }
+
+        //adiciona os jogadores
+        for(int i = 0; i < lista.size(); i++){
+            listaJogadores.adiciona(lista.get(i));
+        }
+
+        GravaArquivo.gravaArquivo(listaJogadores);
+        LeArquivo.leArquivo("ListaJogadores.txt");
 
         return lista.isEmpty() ? ResponseEntity.status(204).build() :
                 ResponseEntity.status(200).body(lista);

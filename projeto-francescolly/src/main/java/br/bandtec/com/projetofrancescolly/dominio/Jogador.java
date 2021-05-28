@@ -6,6 +6,7 @@ import com.sun.istack.NotNull;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Jogador {
@@ -15,9 +16,11 @@ public class Jogador {
     private Integer id;
 
     @NotBlank
+    @Size(min = 3, max = 12)
     private String nome;
 
     @NotBlank
+    @Size(min = 3, max = 12)
     private String sobrenome;
 
     @NotNull
@@ -25,6 +28,7 @@ public class Jogador {
     private Integer numeroCamisa;
 
     @NotBlank
+    @Size(min = 10)
     private String diaDeEstreia;
 
     @ManyToOne

@@ -23,8 +23,8 @@ public class AgendamentoService {
     @Autowired
     private JogadorController controller;
 
-    //Método agendado está devolvendo nullPointerException, porém está funcionando de resto
-    @Scheduled(fixedRate = 15000)
+    //Método agendado está verificando se a fila de requisições está vazia e caso não faz as operações
+    @Scheduled(fixedRate = 3000)
     public void verificarRequisições() {
         if (controller.operacoesFila.isEmpty()) {
             System.out.println("Fila vazia");
